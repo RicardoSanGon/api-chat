@@ -4,16 +4,18 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
+import { WebsocketModule } from './websockets/websocket.module';
 
 @Module({
   imports: [
+    WebsocketModule,
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type: 'mysql',
       host: 'localhost',
-      port: 5432,
+      port: 3306,
       database: 'chat',
-      username: 'postgres',
-      password: 'root',
+      username: 'root',
+      password: '20032912',
       synchronize: true,
       entities: [User],
     }),
