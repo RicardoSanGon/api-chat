@@ -13,17 +13,22 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const password = await bcrypt.hash(createUserDto.password, 10);
+    const salt = await bcrypt.genSalt(10);
+    const password = await bcrypt.hash(createUserDto.password, salt);
     createUserDto.password = password;
     return await this.userRepository.save(createUserDto);
+  }
+
+  async findByEmail(email: string) {
+    return await this.userRepository.findOneOrFail({ where: { email: email } });
   }
 
   findAll() {
     return `This action returns all user`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return await this.userRepository.findOneOrFail({ where: { id: id } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
