@@ -12,12 +12,12 @@ import { Message } from './message/entities/message.entity';
   imports: [
     WebsocketModule,
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'postgres',
       host: 'localhost',
-      port: 3306,
+      port: 5432,
       database: 'chat',
-      username: 'root',
-      password: '20032912',
+      username: 'postgres',
+      password: 'root',
       synchronize: true,
       entities: [User],
     }),
@@ -39,4 +39,3 @@ import { Message } from './message/entities/message.entity';
   providers: [AppService],
 })
 export class AppModule {}
-
