@@ -13,13 +13,13 @@ export class MessageService {
     private messageRepository: Repository<Message>,
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
-  async create(createMessageDto: CreateMessageDto, @Request() req) {
+  async create(createMessageDto: CreateMessageDto, senderId) {
     await this.userRepository.findOneOrFail({
       where: { id: createMessageDto.receiver },
     });
     return await this.messageRepository.save({
       content: createMessageDto.content,
-      sender: req.user.sub,
+      sender: senderId,
       receiver: createMessageDto.receiver,
       sent_at: DateTime.now().toISO(),
     });

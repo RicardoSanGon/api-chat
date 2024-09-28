@@ -12,5 +12,6 @@ import { User } from 'src/user/entities/user.entity';
     TypeOrmModule.forFeature([Message], 'MongoConnection'),
     TypeOrmModule.forFeature([User]),
   ],
+  exports: [MessageService],
 })
 export class MessageModule {}

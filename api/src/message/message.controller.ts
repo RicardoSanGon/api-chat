@@ -17,14 +17,12 @@ import { AuthGuard } from 'src/auth/auth.guard';
 @Controller('v1/message')
 export class MessageController {
   constructor(private readonly messageService: MessageService) {}
-  @UseGuards(AuthGuard)
-  @Post()
+
   create(
-    @Param() id: number,
-    @Body() createMessageDto: CreateMessageDto,
-    @Request() req,
+    createMessageDto: { content: string; receiver: number },
+    senderUserId: number,
   ) {
-    return this.messageService.create(createMessageDto, req);
+    return this.messageService.create(createMessageDto, senderUserId);
   }
 
   @Get()

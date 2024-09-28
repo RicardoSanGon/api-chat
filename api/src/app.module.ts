@@ -27,7 +27,7 @@ import { Message } from './message/entities/message.entity';
     TypeOrmModule.forRoot({
       name: 'MongoConnection',
       type: 'mongodb',
-      url: 'mongodb+srv://Angel:20032912@angel.b01blpe.mongodb.net/?retryWrites=true&w=majority&appName=Angel',
+      url: 'mongodb://localhost/chat',
       database: 'chat',
       synchronize: true,
       entities: [Message],
