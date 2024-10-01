@@ -29,14 +29,17 @@ export class WebsocketGateway
   }
 
   @SubscribeMessage('mensaje')
-  hanldeEvent(@MessageBody() data: any, @ConnectedSocket() client: Socket) {
+  async hanldeEvent(
+    @MessageBody() data: any,
+    @ConnectedSocket() client: Socket,
+  ) {
     console.log('Received message:', data);
     console.log('User:', client.user);
-    const res = this.messageService.create(data, client.user.sub);
-    console.log('Response:', res);
+    // const res = await this.messageService.create(data, client.user.sub);
+
     //este es para que todos reciban el mensaje incluyendo al que lo mando
     //this.server.emit('mensajeservidor',data);
     //este envia de un socket al resto de sockets
-    client.broadcast.emit('mensajseservidor', res);
+    client.broadcast.emit('mensajeservidor', data);
   }
 }
