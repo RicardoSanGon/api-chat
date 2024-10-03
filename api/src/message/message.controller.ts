@@ -10,8 +10,6 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { MessageService } from './message.service';
-import { CreateMessageDto } from './dto/create-message.dto';
-import { UpdateMessageDto } from './dto/update-message.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('v1/message')

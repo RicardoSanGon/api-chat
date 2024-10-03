@@ -34,7 +34,6 @@ export class WebsocketGateway
     @ConnectedSocket() client: Socket,
   ) {
     console.log('Received message:', data);
-    console.log('User:', client.user);
     // const res = await this.messageService.create(data, client.user.sub);
 
     //este es para que todos reciban el mensaje incluyendo al que lo mando
