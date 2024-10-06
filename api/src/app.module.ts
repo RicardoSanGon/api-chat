@@ -8,16 +8,17 @@ import { WebsocketModule } from './websockets/websocket.module';
 import { AuthModule } from './auth/auth.module';
 import { MessageModule } from './message/message.module';
 import { Message } from './message/entities/message.entity';
+import { MailService } from './mail/mail.service';
 @Module({
   imports: [
     WebsocketModule,
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type: 'mysql',
       host: 'localhost',
-      port: 5432,
+      port: 3306,
       database: 'chat',
-      username: 'postgres',
-      password: 'root',
+      username: 'root',
+      password: '20032912',
       synchronize: true,
       entities: [User],
     }),
@@ -27,7 +28,7 @@ import { Message } from './message/entities/message.entity';
     TypeOrmModule.forRoot({
       name: 'MongoConnection',
       type: 'mongodb',
-      url: 'mongodb://localhost/chat',
+      url: '',
       database: 'chat',
       synchronize: true,
       entities: [Message],
@@ -36,6 +37,6 @@ import { Message } from './message/entities/message.entity';
     TypeOrmModule.forFeature([Message], 'MongoConnection'),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, MailService],
 })
 export class AppModule {}
